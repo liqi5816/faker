@@ -7,4 +7,5 @@
 * [任务中心](ren-wu-zhong-xin.md)
 * [定时任务](ding-shi-ren-wu.md)
 * [查看数据](cha-kan-shu-ju.md)
+* [模板样例](mo-ban-yang-li.md)
 
