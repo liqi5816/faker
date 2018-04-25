@@ -4,9 +4,9 @@
 
 ![](/assets/商标爬取1.png)
 
-                                                                                                 图 1
 
-商标爬取任务内容是对图1中的数据进行爬取。爬取的json模板如下所示：
+
+商标爬取任务内容是对上图中的数据进行爬取。爬取的json模板如下所示：
 
 ```
 {
@@ -16,7 +16,7 @@
         "http://sbgg.saic.gov.cn:9080/tmann/annInfoView/annSearchDG.html?annNum=1596&totalYOrN=true"
     ],
     "thread": "1",
-    "maxPageGather": "10",
+    "maxPageGather": "-1",
     "retry": "2",
     "sleep": "0",
     "timeout": "5000",
@@ -60,7 +60,7 @@
 }
 ```
 
-sitename:模板名称
+sitename:模板名称一般格式   商标爬取模板+商标期数
 
 domain:爬取的主页面
 
@@ -86,12 +86,84 @@ doNLP:自然处理语言true为选择。
 
 saveCapture:保存网页快照，默认为选择true，好对应相应的数据。
 
+设置好模板之后先点回填表格，这样json模板里的数据会回填到表格中，然后点击抓取样例数据，看抓取的数据是否满足条件，满足提交任务，不满足重洗修改模板后提交任务。
+
 * [ ] ## 搜狐新闻爬取样例
+
+![](/assets/sohu.png)
+
+由上图可见得网页上的信息比较杂，广告较多，而我们需要的内容只是中间的几条。而选择其中一个点进去
+
+![](/assets/sohu1.png)            
+
+     会发现网站的连接都是从www.sohu.com/a/后面加一些数字跟下划线。所以，我们根据对所需要的页面然后进行数据爬取。利用正则表达式规定爬取的页面，从而可以过滤去一些不必要的数据。模板如下所示：
+
+```
+{
+    "siteName": "sohu",
+    "domain": "www.sohu.com",
+    "startURL": [
+        "http://www.sohu.com/tag/65239"
+    ],
+    "thread": "1",
+    "maxPageGather": "-1",
+    "retry": "2",
+    "sleep": "0",
+    "timeout": "5000",
+    "charset": "",
+    "urlReg": "http://www\\.sohu\\.com/a/.*",
+    "titleXPath": "",
+    "titleReg": "",
+    "contentXPath": "",
+    "contentReg": "",
+    "authorXPath": "//*[@id='user-info']/h4/a",
+    "authorReg": "",
+    "categoryXPath": "//*[@id='article-container']/div[2]/div[1]/div[1]/div/span[3]",
+    "categoryReg": "",
+    "typeName": "webpage",
+    "publishTimeXPath": "//*[@id='news-time']//text()",
+    "publishTimeReg": "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}",
+    "publishTimeFormat": "yyyy-MM-dd hh:mm",
+    "lang": "",
+    "country": "",
+    "callbackURL": [],
+    "userAgent": "Mozilla/5.0 (Windows NT 5.2) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30",
+    "proxyHost": "",
+    "proxyPort": "0",
+    "proxyUsername": "",
+    "proxyPassword": "",
+    "doNLP": true,
+    "saveCapture": true,
+    "spiderType": "commons",
+    "id": "",
+    "ajaxSite": false,
+    "needTitle": false,
+    "needContent": false,
+    "needPublishTime": false,
+    "useSelenium": false,
+    "gatherFirstPage": false,
+    "autoDetectPublishDate": false,
+    "trademark": false,
+    "dynamicFields": [],
+    "fileFields": [],
+    "staticFields": [],
+    "clickFields": []
+}
+```
+
+urlReg:就是我们上述所述的规定查询的页面，注意“.”一定要加转义。
+
+authorXPath:作者位置的xpath，可以从网页上找到作者名字的位置。这个xpath一定要在我们规定的页面中，就是上面的urlReg中
+
+publishTimeXPath:发布时间的xpath。
+
+publishReg:我们获取的xpath上的数据会有各种各样，为了方便管理，我们这里会将网页上的数据取出后重新定义。
+
+publishTimeFormat:我们获取的时间进行格式化，相当于simpleDataFormat中的模型。
+
 * [ ] ## 天涯论坛爬取样例
 
-## 
 
-* [ ] ## 微博爬取样例
 
 
 
