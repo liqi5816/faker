@@ -1,6 +1,6 @@
 # 任务中心
 
-![](/assets/taskCenter.png)
+![](/assets/task_center.png)
 
 ### 任务中心主要对当前存在的任务进行管理
 
