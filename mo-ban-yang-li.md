@@ -90,7 +90,9 @@ trademark：是对此模板专门设置的模式。只有抓取商标时才会�
 
 ![](/assets/modle_example1.png)
 
-回填后在静态字段中添加type类型，内容位trademark.
+回填后在静态字段中添加type类型，内容为trademark.
+
+添加静态字段annNum类型，内容为每期的期数
 
 ## 搜狐新闻爬取样例
 
